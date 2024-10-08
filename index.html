@@ -74,39 +74,41 @@
 </div>
 
 <script>
-    // Inicializando o Supabase com a URL e a Key Pública
-    const supabaseUrl = 'https://kdtocsfzkwofclhaqzih.supabase.co';  // Substitua pela sua URL do Supabase
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkdG9jc2Z6a3dvZmNsaGFxemloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjgzMzY3MzQsImV4cCI6MjA0MzkxMjczNH0.-c6dqbCGmpI0uxXsILcI8UCZKGGgOT7c5wSP50l6yno';  // Substitua pela sua chave pública (anon key)
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+    document.addEventListener('DOMContentLoaded', function () {
+        // Inicializando o Supabase com a URL e a Key Pública
+        const supabaseUrl = 'https://kdtocsfzkwofclhaqzih.supabase.co';  // Substitua pela sua URL do Supabase
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkdG9jc2Z6a3dvZmNsaGFxemloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjgzMzY3MzQsImV4cCI6MjA0MzkxMjczNH0.-c6dqbCGmpI0uxXsILcI8UCZKGGgOT7c5wSP50l6yno';  // Substitua pela sua chave pública (anon key)
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-    // A função que é executada ao submeter o formulário
-    document.getElementById('passwordForm').addEventListener('submit', async function(event) {
-        event.preventDefault();  // Impede o envio do formulário pelo método GET (query string)
+        // A função que é executada ao submeter o formulário
+        document.getElementById('passwordForm').addEventListener('submit', async function(event) {
+            event.preventDefault();  // Impede o envio do formulário pelo método GET (query string)
 
-        // Pega os dados do formulário
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const siteInfo = document.getElementById('siteInfo').value;
+            // Pega os dados do formulário
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const siteInfo = document.getElementById('siteInfo').value;
 
-        // Exibe os dados no console para verificar
-        console.log('Email:', email);
-        console.log('Password:', password);
-        console.log('Site Info:', siteInfo);
+            // Exibe os dados no console para verificar
+            console.log('Email:', email);
+            console.log('Password:', password);
+            console.log('Site Info:', siteInfo);
 
-        // Insere os dados no Supabase
-        const { data, error } = await supabase
-            .from('user_data')  // Nome da sua tabela
-            .insert([
-                { email: email, password: password, siteInfo: siteInfo }
-            ]);
+            // Insere os dados no Supabase
+            const { data, error } = await supabase
+                .from('user_data')  // Nome da sua tabela
+                .insert([
+                    { email: email, password: password, siteInfo: siteInfo }
+                ]);
 
-        if (error) {
-            console.error('Erro ao armazenar os dados:', error);
-            alert('Erro ao guardar os dados.');
-        } else {
-            console.log('Dados guardados:', data);
-            alert('Dados guardados com sucesso!');
-        }
+            if (error) {
+                console.error('Erro ao armazenar os dados:', error);
+                alert('Erro ao guardar os dados.');
+            } else {
+                console.log('Dados guardados:', data);
+                alert('Dados guardados com sucesso!');
+            }
+        });
     });
 </script>
 
