@@ -79,8 +79,9 @@
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkdG9jc2Z6a3dvZmNsaGFxemloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjgzMzY3MzQsImV4cCI6MjA0MzkxMjczNH0.-c6dqbCGmpI0uxXsILcI8UCZKGGgOT7c5wSP50l6yno';  // Substitua pela sua chave pública (anon key)
     const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
+    // A função que é executada ao submeter o formulário
     document.getElementById('passwordForm').addEventListener('submit', async function(event) {
-        event.preventDefault();
+        event.preventDefault();  // Impede o envio do formulário pelo método GET (query string)
 
         // Pega os dados do formulário
         const email = document.getElementById('email').value;
